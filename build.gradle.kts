@@ -1,9 +1,13 @@
 plugins {
-    kotlin("jvm") version "1.7.21"
+    kotlin("jvm") version "1.9.0"
 }
 
 repositories {
     mavenCentral()
+}
+
+tasks.test {
+    useJUnitPlatform()
 }
 
 tasks {
@@ -12,8 +16,8 @@ tasks {
             java.srcDirs("src")
         }
     }
+}
 
-    wrapper {
-        gradleVersion = "7.5.1"
-    }
+kotlin {
+    jvmToolchain(8)
 }
