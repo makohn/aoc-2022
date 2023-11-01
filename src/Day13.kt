@@ -55,15 +55,33 @@ fun main() {
     }
 
     fun part2(input: List<String>): Int {
-        return 0
+        val list = input
+            .filter { it.isNotEmpty() }
+            .map { eval(it.toMutableList())[0] as List<*> }
+            .toMutableList()
+
+        println(list)
+
+        val da = listOf(listOf(2))
+        val db = listOf(listOf(6))
+
+        list.add(da)
+        list.add(db)
+
+        list.sortWith(::compare)
+
+        val a = list.indexOf(da) + 1
+        val b = list.indexOf(db) + 1
+
+        return a * b
     }
 
     // test if implementation meets criteria from the description, like:
     val testInput = readInput("Day${day}_test")
     check(part1(testInput) == 13)
-    //check(part2(testInput) == 0)
+    check(part2(testInput) == 140)
 
     val input = readInput("Day${day}")
     println(part1(input))
-    //println(part2(input))
+    println(part2(input))
 }
