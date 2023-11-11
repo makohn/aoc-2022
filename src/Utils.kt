@@ -1,6 +1,7 @@
 import java.io.File
 import java.math.BigInteger
 import java.security.MessageDigest
+import kotlin.math.abs
 
 /**
  * Reads lines from the given input txt file.
@@ -27,6 +28,12 @@ fun CharMatrix.adjacentPoints(dataPoint: DataPoint<Char>) = buildList {
         if (a in 0 until n && b in 0 until m) add(DataPoint(a, b, this@adjacentPoints[a][b]))
     }
 }
+
+data class Vec2(val x: Int, val y: Int)
+
+fun manhattanDistance(p: Vec2, q: Vec2) = abs(p.x - q.x) + abs(p.y - q.y)
+
+fun String.findInts() = Regex("[+-]?\\d+").findAll(this).map { it.value.toInt() }.toList()
 
 fun <N> bfs(startNode: N, adjacent: (N) -> List<N>): HashMap<N, Int> {
 
